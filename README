@@ -1,0 +1,6 @@
+Run 
+
+./parseBlocks.py ./xmlFiles > output.tsv
+
+to create a tab separated values that will list features of all modules specified in the xml block definitions under ./xmlFiles directory.
+

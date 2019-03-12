@@ -1,0 +1,7 @@
+mkdir xmlFiles
+for i in $(find $1/gr-* -name \*.xml ); do
+        fname=$(echo $i | sed 's/\.\///g' )
+        fname=$(echo $fname |  sed 's/\//-/g')
+        cp $i xmlFiles/$fname
+done
+

@@ -1,0 +1,16 @@
+#!/bin/bash
+
+mkdir allGRCs
+for i in $(find -name \*.grc); do
+    fname=$(echo $i | sed 's/\.\///g' )
+    fname=$(echo $fname |  sed 's/\//-/g')
+    cp $i grcFiles/$fname
+done
+
+
+INPUT_DIR=$1
+OUTPUT_DIR=$2
+
+for filename in $1/*.grc; do
+    grcc -d $2 $filename
+done

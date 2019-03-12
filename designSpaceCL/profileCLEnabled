@@ -1,0 +1,21 @@
+#!/bin/bash
+EXEC=$1
+
+BLOCK_SIZE_MIN=$2
+BLOCK_SIZE_MAX=$3
+
+timeStamp=$(date '+%H%M%S')
+mkdir $timeStamp
+
+for (( i=$BLOCK_SIZE_MIN; i<=$BLOCK_SIZE_MAX; i++  ))
+do
+    blockSize=$((2**i))
+    
+    outputFileName=$timeStamp/$blockSize
+    set -x
+    perf record -o $outputFileName.perf -ag $EXEC $blockSize
+	perf script -i $outputFileName.perf > $outputFileName.txt
+    set +x
+done
+
+

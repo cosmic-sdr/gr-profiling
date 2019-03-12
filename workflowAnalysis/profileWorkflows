@@ -1,0 +1,20 @@
+#!/bin/bash
+INPUT_DIR=$1
+OUTPUT_DIR=$2
+DURATION=$3
+mkdir $OUTPUT_DIR
+
+for filePath in $1/*.py; do
+	fileName=$(basename -- "$filePath")
+	fileName="${fileName%.*}"
+#	echo $fileName
+	outputPerfFile=$2/perf.data.$fileName
+	perf record -o $outputPerfFile -a python $filePath & 
+	sleep $3
+	killall python
+	sleep 6
+	#perf script -i $outputPerfFile > $outputPerfFile.txt
+done
+
+sudo chown $USER $2/*
+
