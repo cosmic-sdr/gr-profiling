@@ -1,0 +1,1 @@
+ python analyzeGRCXmls.py --grcFolder allGRCs/ --blockFilters digital sink source gui options note parameter variable import pyqt --mode proximityGraph > all.dot

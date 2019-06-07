@@ -1,0 +1,16 @@
+#!/bin/bash
+
+INPUT_DIR=$1
+OUTPUT_DIR=$2
+
+mkdir $OUTPUT_DIR 
+for i in $(find $INPUT_DIR -name \*.grc); do
+#    fname=$(echo $i | sed 's/\.\///g' )
+#    fname=$(echo $fname |  sed 's/\//-/g')
+    fname=$(basename $i)
+    fname=$(echo $fname | sed -e 's/ /_/g')
+    cp  "$i" $OUTPUT_DIR/$fname
+done
+
+
+
